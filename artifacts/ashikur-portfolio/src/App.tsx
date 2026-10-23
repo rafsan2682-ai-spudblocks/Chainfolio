@@ -1,5 +1,5 @@
 import { type ReactNode } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowDown, ArrowDownRight, ArrowRight, ArrowUpRight, Blocks, BriefcaseBusiness, Code2, Github, Linkedin, Menu, MoveUpRight, Network, ShieldCheck, Sparkles, X } from 'lucide-react';
 import { useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -18,6 +18,7 @@ const queryClient = new QueryClient();
 
 function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const reduceMotion = useReducedMotion();
   const navItems = [
     ['Impact', '#impact'],
     ['Ventures', '#ventures'],
@@ -54,7 +55,7 @@ function Home() {
     <main className="portfolio-shell">
       <a className="skip-link" href="#main-content">Skip to content</a>
       <header className="site-header">
-        <a className="wordmark" href="#top" aria-label="Ashikur Rahaman home"><span className="mark-icon"><Blocks size={17} /></span><span>ASHIK<span className="wordmark-dot">.</span></span></a>
+        <a className="wordmark" href="#top" aria-label="Ashikur Rahaman home"><span className="mark-icon"><Blocks size={17} /></span><span>Ashikur Rahaman</span></a>
         <nav className={`main-nav ${menuOpen ? 'is-open' : ''}`} aria-label="Main navigation">
           {navItems.map(([label, href]) => <a key={label} href={href} onClick={() => setMenuOpen(false)}>{label}</a>)}
           <a className="nav-contact" href="#contact" onClick={() => setMenuOpen(false)}>Let’s talk <ArrowUpRight size={14} /></a>
@@ -65,22 +66,22 @@ function Home() {
       <div id="main-content">
         <section className="hero section-wrap" id="top" aria-labelledby="hero-title">
           <div className="hero-copy">
-            <motion.div className="eyebrow" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .55 }}>
+            <motion.div className="eyebrow" initial={reduceMotion ? false : { opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: reduceMotion ? 0 : .55 }}>
               <span className="status-dot" /> WEB3 FOUNDER · BUILDER · CONNECTOR
             </motion.div>
-            <motion.h1 id="hero-title" initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .7, delay: .08 }}>
+            <motion.h1 id="hero-title" initial={reduceMotion ? false : { opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: reduceMotion ? 0 : .7, delay: reduceMotion ? 0 : .08 }}>
               Strategy that<br />ships. <span>Technology</span><br />that scales.
             </motion.h1>
-            <motion.p className="hero-intro" initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .65, delay: .2 }}>
+            <motion.p className="hero-intro" initial={reduceMotion ? false : { opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: reduceMotion ? 0 : .65, delay: reduceMotion ? 0 : .2 }}>
               I’m Ashikur Rahaman — a Web3 founder and blockchain engineer connecting business vision, hands-on technology, and the communities that move it forward.
             </motion.p>
-            <motion.div className="hero-actions" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .6, delay: .32 }}>
+            <motion.div className="hero-actions" initial={reduceMotion ? false : { opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: reduceMotion ? 0 : .6, delay: reduceMotion ? 0 : .32 }}>
               <a className="button-primary" href="#ventures">Explore my work <ArrowRight size={16} /></a>
               <a className="button-quiet" href="mailto:ashikweb3.o@gmail.com">Get in touch <ArrowUpRight size={15} /></a>
             </motion.div>
             <div className="hero-meta"><span>BASED IN BANGLADESH</span><span className="meta-line" /><span>BUILDING SPUDPAY</span></div>
           </div>
-          <motion.div className="hero-art" initial={{ opacity: 0, scale: .96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: .9, delay: .12 }}>
+          <motion.div className="hero-art" initial={reduceMotion ? false : { opacity: 0, scale: .96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: reduceMotion ? 0 : .9, delay: reduceMotion ? 0 : .12 }}>
             <div className="art-grid" />
             <div className="orbit orbit-a" /><div className="orbit orbit-b" />
             <svg className="network-lines" viewBox="0 0 520 470" aria-hidden="true">
@@ -101,59 +102,59 @@ function Home() {
         <section className="impact-section" id="impact" aria-labelledby="impact-title">
           <div className="section-wrap impact-inner">
             <div className="section-kicker"><span>01</span><span className="kicker-rule" /> THE WORK, IN NUMBERS</div>
-            <div className="impact-heading"><h2 id="impact-title">Outcomes over<br /><em>noise.</em></h2><p>Across exchanges, protocols, and early-stage ventures, the work is measured in communities built, partnerships formed, and products shipped.</p></div>
+            <motion.div className="impact-heading" initial={reduceMotion ? false : { opacity: 0, y: 18 }} whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }} viewport={{ once: true, amount: .35 }} transition={{ duration: reduceMotion ? 0 : .55 }}><h2 id="impact-title">Outcomes over<br /><em>noise.</em></h2><p>Across exchanges, protocols, and early-stage ventures, the work is measured in communities built, partnerships formed, and products shipped.</p></motion.div>
             <div className="metric-grid">
-              {metrics.map((item, i) => <motion.div className="metric-item" key={item.value} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .5 }} transition={{ duration: .48, delay: i * .08 }}><strong>{item.value}</strong><span className="metric-label">{item.label}</span><small>{item.note}</small></motion.div>)}
+              {metrics.map((item, i) => <motion.div className="metric-item" key={item.value} initial={reduceMotion ? false : { opacity: 0, y: 16 }} whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }} viewport={{ once: true, amount: .5 }} transition={{ duration: reduceMotion ? 0 : .48, delay: reduceMotion ? 0 : i * .08 }}><strong>{item.value}</strong><span className="metric-label">{item.label}</span><small>{item.note}</small></motion.div>)}
             </div>
           </div>
         </section>
 
         <section className="section-wrap ventures-section" id="ventures" aria-labelledby="ventures-title">
           <div className="section-kicker"><span>02</span><span className="kicker-rule" /> FOUNDER MODE</div>
-          <div className="ventures-heading"><div><h2 id="ventures-title">Building the<br /><em>next chapter.</em></h2></div><p>From founding a blockchain studio to focusing on a new financial product: I build with a long view, and stay close to the details.</p></div>
-          <div className="venture-feature">
-            <div className="venture-mark"><span className="spud-emblem"><Blocks size={31} strokeWidth={1.15} /></span><span className="mono-label">01 / ACTIVE VENTURE</span></div>
+          <motion.div className="ventures-heading" initial={reduceMotion ? false : { opacity: 0, y: 18 }} whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }} viewport={{ once: true, amount: .35 }} transition={{ duration: reduceMotion ? 0 : .55 }}><div><h2 id="ventures-title">Building the<br /><em>next chapter.</em></h2></div><p>From founding a blockchain studio to focusing on a new financial product: I build with a long view, and stay close to the details.</p></motion.div>
+          <motion.div className="venture-feature" initial={reduceMotion ? false : { opacity: 0, y: 22 }} whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }} viewport={{ once: true, amount: .25 }} transition={{ duration: reduceMotion ? 0 : .65 }}>
+            <div className="venture-mark"><img className="venture-logo" src="/spudpay-logo.jpg" alt="SpudPay logo" width={58} height={58} loading="lazy" /><span className="mono-label">01 / ACTIVE VENTURE</span></div>
             <div className="venture-info"><div className="venture-topline"><span className="active-pill"><span className="status-dot" /> ACTIVE SINCE 2025</span><span>FOUNDER</span></div><h3>SpudPay</h3><p>Building mobile financial services powered by blockchain technology — with a focus on making digital finance more accessible.</p><a href="#contact" className="text-link">Discuss the venture <ArrowUpRight size={14} /></a></div>
             <div className="venture-side-note"><div className="side-note-line" /><p>“The future of finance is decentralized. Build the infrastructure, partnerships, and communities that bring it closer.”</p><span>ASHIKUR RAHAMAN</span></div>
-          </div>
-          <div className="venture-secondary">
-            <div className="secondary-icon"><Blocks size={22} /></div>
+          </motion.div>
+          <motion.div className="venture-secondary" initial={reduceMotion ? false : { opacity: 0, y: 18 }} whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }} viewport={{ once: true, amount: .25 }} transition={{ duration: reduceMotion ? 0 : .55, delay: reduceMotion ? 0 : .1 }}>
+            <img className="secondary-icon secondary-logo" src="/spudblocks-logo.jpg" alt="SpudBlocks logo" width={52} height={52} loading="lazy" />
             <div><span className="mono-label">FOUNDED 2018 · ADVISOR</span><h3>SpudBlocks</h3><p>Blockchain and cryptocurrency company founded to deliver Web3 projects and build a team of technology specialists. Now in an advisory role.</p></div>
             <span className="secondary-tag">FOUNDER / ADVISOR</span>
-          </div>
+          </motion.div>
         </section>
 
         <section className="experience-section" id="experience" aria-labelledby="experience-title">
           <div className="section-wrap experience-layout">
             <div className="experience-intro"><div className="section-kicker"><span>03</span><span className="kicker-rule" /> OPERATOR’S VIEW</div><h2 id="experience-title">A career built<br />at the <em>intersection.</em></h2><p>Commercial leadership and technical fluency, shaped inside fast-moving crypto companies and founder-led teams.</p><a className="button-outline" href="#contact">Talk about a role <ArrowUpRight size={15} /></a></div>
             <div className="timeline">
-              {career.map((job, index) => <motion.article className="timeline-item" key={job.org} initial={{ opacity: 0, x: 12 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: .4 }} transition={{ duration: .45, delay: index * .06 }}><div className="timeline-marker"><span /></div><div className="timeline-date">{job.date}</div><div className="timeline-copy"><div className="timeline-title"><h3>{job.org}</h3><span>{job.role}</span></div><p>{job.text}</p></div></motion.article>)}
+              {career.map((job, index) => <motion.article className="timeline-item" key={job.org} initial={reduceMotion ? false : { opacity: 0, x: 12 }} whileInView={reduceMotion ? undefined : { opacity: 1, x: 0 }} viewport={{ once: true, amount: .4 }} transition={{ duration: reduceMotion ? 0 : .45, delay: reduceMotion ? 0 : index * .06 }}><div className="timeline-marker"><span /></div><div className="timeline-date">{job.date}</div><div className="timeline-copy"><div className="timeline-title"><h3>{job.org}</h3><span>{job.role}</span></div><p>{job.text}</p></div></motion.article>)}
             </div>
           </div>
         </section>
 
         <section className="section-wrap work-section" id="work" aria-labelledby="work-title">
           <div className="section-kicker"><span>04</span><span className="kicker-rule" /> SELECTED PROJECTS</div>
-          <div className="work-heading"><h2 id="work-title">Built with teams<br />moving <em>Web3 forward.</em></h2><p>A selection of development, product, and operations work across the crypto ecosystem.</p></div>
+          <motion.div className="work-heading" initial={reduceMotion ? false : { opacity: 0, y: 18 }} whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }} viewport={{ once: true, amount: .35 }} transition={{ duration: reduceMotion ? 0 : .55 }}><h2 id="work-title">Built with teams<br />moving <em>Web3 forward.</em></h2><p>A selection of development, product, and operations work across the crypto ecosystem.</p></motion.div>
           <div className="project-grid">
-            {projects.map((project, index) => <motion.article className={`project-card ${index === 0 ? 'project-featured' : ''}`} key={project.name} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .2 }} transition={{ duration: .45, delay: (index % 4) * .07 }}><div className="project-card-top"><span>{project.category}</span><span className="project-number">{String(index + 1).padStart(2, '0')}</span></div><h3>{project.name}</h3><p>{project.description}</p><div className="tag-list">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div><span className="project-arrow" aria-hidden="true"><ArrowDownRight size={17} /></span></motion.article>)}
+            {projects.map((project, index) => <motion.article className={`project-card ${index === 0 ? 'project-featured' : ''}`} key={project.name} initial={reduceMotion ? false : { opacity: 0, y: 16 }} whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }} viewport={{ once: true, amount: .2 }} transition={{ duration: reduceMotion ? 0 : .45, delay: reduceMotion ? 0 : (index % 4) * .07 }}><div className="project-card-top"><span>{project.category}</span><span className="project-number">{String(index + 1).padStart(2, '0')}</span></div><h3>{project.name}</h3><p>{project.description}</p><div className="tag-list">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div><span className="project-arrow" aria-hidden="true"><ArrowDownRight size={17} /></span></motion.article>)}
           </div>
           <div className="work-footnote"><span className="footnote-dot" /> Selected work and contributions; not all projects are currently active.</div>
         </section>
 
         <section className="about-section" id="about" aria-labelledby="about-title">
           <div className="section-wrap about-layout">
-            <div className="about-main"><div className="section-kicker"><span>05</span><span className="kicker-rule" /> THE FULL PICTURE</div><h2 id="about-title">Business school.<br /><em>Builder mindset.</em></h2><p className="about-lede">A BBA foundation from East West University, paired with hands-on experience across blockchain engineering, business development, and community operations.</p><div className="education-card"><div className="edu-icon"><ShieldCheck size={21} /></div><div><span className="mono-label">EDUCATION</span><h3>Bachelor of Business Administration</h3><p>East West University · Bangladesh</p></div><ArrowUpRight size={17} className="edu-arrow" /></div></div>
-            <div className="about-aside"><span className="mono-label">WHERE I ADD LEVERAGE</span><p>Translate between the boardroom and the build room. Align partners, teams, and technology around a product that can grow.</p><div className="expertise-list">{expertise.map((skill, i) => <span key={skill}><b>{String(i + 1).padStart(2, '0')}</b>{skill}</span>)}</div><a className="text-link" href="https://github.com/Ashikurrahaman287" target="_blank" rel="noreferrer">Explore code on GitHub <ArrowUpRight size={14} /></a></div>
+            <motion.div className="about-main" initial={reduceMotion ? false : { opacity: 0, x: -18 }} whileInView={reduceMotion ? undefined : { opacity: 1, x: 0 }} viewport={{ once: true, amount: .25 }} transition={{ duration: reduceMotion ? 0 : .6 }}><div className="section-kicker"><span>05</span><span className="kicker-rule" /> THE FULL PICTURE</div><h2 id="about-title">Business school.<br /><em>Builder mindset.</em></h2><p className="about-lede">A BBA foundation from East West University, paired with hands-on experience across blockchain engineering, business development, and community operations.</p><div className="education-card"><div className="edu-icon"><ShieldCheck size={21} /></div><div><span className="mono-label">EDUCATION</span><h3>Bachelor of Business Administration</h3><p>East West University · Bangladesh</p></div><ArrowUpRight size={17} className="edu-arrow" /></div></motion.div>
+            <motion.div className="about-aside" initial={reduceMotion ? false : { opacity: 0, x: 18 }} whileInView={reduceMotion ? undefined : { opacity: 1, x: 0 }} viewport={{ once: true, amount: .25 }} transition={{ duration: reduceMotion ? 0 : .6, delay: reduceMotion ? 0 : .1 }}><span className="mono-label">WHERE I ADD LEVERAGE</span><p>Translate between the boardroom and the build room. Align partners, teams, and technology around a product that can grow.</p><div className="expertise-list">{expertise.map((skill, i) => <span key={skill}><b>{String(i + 1).padStart(2, '0')}</b>{skill}</span>)}</div><a className="text-link" href="https://github.com/Ashikurrahaman287" target="_blank" rel="noreferrer">Explore code on GitHub <ArrowUpRight size={14} /></a></motion.div>
           </div>
         </section>
 
         <section className="contact-section" id="contact" aria-labelledby="contact-title">
           <div className="contact-orbit contact-orbit-one" /><div className="contact-orbit contact-orbit-two" />
-          <div className="section-wrap contact-inner"><div className="section-kicker"><span>06</span><span className="kicker-rule" /> OPEN TO THE RIGHT CONVERSATION</div><div className="contact-content"><div><h2 id="contact-title">Let’s build what<br /><em>comes next.</em></h2><p>For strategic partnerships, founder conversations, and opportunities to make useful things in Web3.</p><a className="contact-email" href="mailto:ashikweb3.o@gmail.com">ashikweb3.o@gmail.com <MoveUpRight size={18} /></a></div><div className="contact-links"><a href="https://www.linkedin.com/in/ashik-the-knight/" target="_blank" rel="noreferrer"><Linkedin size={17} /><span>LinkedIn</span><ArrowUpRight size={14} /></a><a href="https://github.com/Ashikurrahaman287" target="_blank" rel="noreferrer"><Github size={17} /><span>GitHub</span><ArrowUpRight size={14} /></a><a href="https://ashik.spudblocks.com" target="_blank" rel="noreferrer"><Blocks size={17} /><span>Portfolio</span><ArrowUpRight size={14} /></a></div></div><div className="contact-bottom"><span><span className="status-dot" /> BUILDING SPUDPAY · BANGLADESH (GMT+6)</span><a href="#top">BACK TO TOP <ArrowUpRight size={13} /></a></div></div>
+          <div className="section-wrap contact-inner"><div className="section-kicker"><span>06</span><span className="kicker-rule" /> OPEN TO THE RIGHT CONVERSATION</div><motion.div className="contact-content" initial={reduceMotion ? false : { opacity: 0, y: 22 }} whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }} viewport={{ once: true, amount: .2 }} transition={{ duration: reduceMotion ? 0 : .65 }}><div><h2 id="contact-title">Let’s build what<br /><em>comes next.</em></h2><p>For strategic partnerships, founder conversations, and opportunities to make useful things in Web3.</p><a className="contact-email" href="mailto:ashikweb3.o@gmail.com">ashikweb3.o@gmail.com <MoveUpRight size={18} /></a></div><div className="contact-links"><a href="https://www.linkedin.com/in/ashik-the-knight/" target="_blank" rel="noreferrer"><Linkedin size={17} /><span>LinkedIn</span><ArrowUpRight size={14} /></a><a href="https://github.com/Ashikurrahaman287" target="_blank" rel="noreferrer"><Github size={17} /><span>GitHub</span><ArrowUpRight size={14} /></a><a href="https://ashik.spudblocks.com" target="_blank" rel="noreferrer"><Blocks size={17} /><span>Portfolio</span><ArrowUpRight size={14} /></a></div></motion.div><div className="contact-bottom"><span>BASED IN BANGLADESH · GMT+6</span><a href="#top">BACK TO TOP <ArrowUpRight size={13} /></a></div></div>
         </section>
       </div>
-      <footer className="site-footer"><a className="wordmark" href="#top"><span className="mark-icon"><Blocks size={16} /></span><span>ASHIK<span className="wordmark-dot">.</span></span></a><span>© {new Date().getFullYear()} ASHIKUR RAHAMAN</span><span>WEB3 FOUNDER & ENGINEER</span></footer>
+      <footer className="site-footer"><a className="wordmark" href="#top" aria-label="Ashikur Rahaman home"><span className="mark-icon"><Blocks size={16} /></span><span>Ashikur Rahaman</span></a><span>© {new Date().getFullYear()} ASHIKUR RAHAMAN</span><span>WEB3 FOUNDER & ENGINEER</span></footer>
     </main>
   );
 }
