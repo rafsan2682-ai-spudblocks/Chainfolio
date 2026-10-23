@@ -55,7 +55,7 @@ function Home() {
     <main className="portfolio-shell">
       <a className="skip-link" href="#main-content">Skip to content</a>
       <header className="site-header">
-        <a className="wordmark" href="#top" aria-label="Ashikur Rahaman home"><span className="mark-icon"><Blocks size={17} /></span><span>Ashikur Rahaman</span></a>
+        <a className="wordmark" href="#top" aria-label="Ashikur Rahaman home"><img className="brand-logo" src="/ashikur-mark.png" alt="" /><span>Ashikur Rahaman</span></a>
         <nav className={`main-nav ${menuOpen ? 'is-open' : ''}`} aria-label="Main navigation">
           {navItems.map(([label, href]) => <a key={label} href={href} onClick={() => setMenuOpen(false)}>{label}</a>)}
           <a className="nav-contact" href="#contact" onClick={() => setMenuOpen(false)}>Let’s talk <ArrowUpRight size={14} /></a>
@@ -154,7 +154,7 @@ function Home() {
           <div className="section-wrap contact-inner"><div className="section-kicker"><span>06</span><span className="kicker-rule" /> OPEN TO THE RIGHT CONVERSATION</div><motion.div className="contact-content" initial={reduceMotion ? false : { opacity: 0, y: 22 }} whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }} viewport={{ once: true, amount: .2 }} transition={{ duration: reduceMotion ? 0 : .65 }}><div><h2 id="contact-title">Let’s build what<br /><em>comes next.</em></h2><p>For strategic partnerships, founder conversations, and opportunities to make useful things in Web3.</p><a className="contact-email" href="mailto:ashikweb3.o@gmail.com">ashikweb3.o@gmail.com <MoveUpRight size={18} /></a></div><div className="contact-links"><a href="https://www.linkedin.com/in/ashik-the-knight/" target="_blank" rel="noreferrer"><Linkedin size={17} /><span>LinkedIn</span><ArrowUpRight size={14} /></a><a href="https://github.com/Ashikurrahaman287" target="_blank" rel="noreferrer"><Github size={17} /><span>GitHub</span><ArrowUpRight size={14} /></a><a href="https://ashik.spudblocks.com" target="_blank" rel="noreferrer"><Blocks size={17} /><span>Portfolio</span><ArrowUpRight size={14} /></a></div></motion.div><div className="contact-bottom"><span>BASED IN BANGLADESH · GMT+6</span><a href="#top">BACK TO TOP <ArrowUpRight size={13} /></a></div></div>
         </section>
       </div>
-      <footer className="site-footer"><a className="wordmark" href="#top" aria-label="Ashikur Rahaman home"><span className="mark-icon"><Blocks size={16} /></span><span>Ashikur Rahaman</span></a><span>© {new Date().getFullYear()} ASHIKUR RAHAMAN</span><span>WEB3 FOUNDER & ENGINEER</span></footer>
+      <footer className="site-footer"><a className="wordmark" href="#top" aria-label="Ashikur Rahaman home"><img className="brand-logo" src="/ashikur-mark.png" alt="" /><span>Ashikur Rahaman</span></a><span>© {new Date().getFullYear()} ASHIKUR RAHAMAN</span><span>WEB3 FOUNDER & ENGINEER</span></footer>
     </main>
   );
 }
