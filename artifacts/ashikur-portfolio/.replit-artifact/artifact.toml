@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Ashikur Rahaman — Web3 Portfolio"
+description = "A cinematic, responsive portfolio for Web3 business leader and blockchain engineer Ashikur Rahaman, showcasing his ventures, project work, impact, and ways to connect."
+version = "1.0.0"
+id = "artifacts/ashikur-portfolio"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 25583
+
+[services.development]
+run = "pnpm --filter @workspace/ashikur-portfolio run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/ashikur-portfolio", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/ashikur-portfolio/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "25583"
+BASE_PATH = "/"
